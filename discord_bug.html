@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discord Bug Syntax Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="bugreport.css" />
+  </head>
+  <body>
+    <div class="column row">
+      <h5>Bug Report Syntax Tool</h5>
+      <div class="callout warning small">
+        <p>Before submitting a bug, make sure to check Trello and/or the Bug Report channels in case it has already been reported:</p>
+        <ul class="no-bullet">
+            <li><a href="https://trello.com/b/AExxR9lU/canary-bugs">Trello board: Canary</a></li>
+            <li><a href="https://trello.com/b/Vqrkz3KO/android-beta-bugs">Trello board: Android</a></li>
+            <li><a href="https://trello.com/b/vLPlnX60/ios-testflight-bugs">Trello board: iOS</a></li>
+            <li><a href="https://trello.com/b/UyU76Esh/linux-bugs">Trello board: Linux</a></li>
+        </ul>
+      </div>
+      <label for="desc-field">Short Description</label>
+      <p class="help-text db-help" id="desc-help">Describe your bug in a single sentence</p>
+      <input type="text" id="desc-field" aria-describedby="desc-help" required>
+      <fieldset class="fieldset" id="steps-fs">
+        <legend><label>Steps to Reproduce</label></legend>
+        <p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
+        <div class="button-group small">
+          <button type="button" class="button" id="add-btn"><i class="fi-plus"></i> Add</button>
+          <button type="button" class="button" id="del-btn"><i class="fi-minus"></i> Remove</button>
+        </div>
+        <div class="input-group" id="s1-grp">
+          <span class="input-group-label"><small>Step 1</small></span>
+          <input type="text" class="input-group-field" id="s1-field" required>
+        </div>
+      </fieldset>
+      <label for="exp-field">Expected Result</label>
+      <p class="help-text db-help" id="exp-help">What should happen when you follow the steps?</p>
+      <input type="text" id="exp-field" aria-describedby="exp-help" required>
+      <label for="act-field">Actual Result</label>
+      <p class="help-text db-help" id="act-help">What actually happens when you follow the steps?</p>
+      <input type="text" id="act-field" aria-describedby="act-help" required>
+      <label for="sys-field">System Settings</label>
+      <p class="help-text db-help" id="sys-help">Your system settings including OS, version, and Discord client/version. Also include your device model if on mobile</p>
+      <input type="text" id="sys-field" aria-describedby="sys-help">
+      <label>Report Syntax</label>
+      <p class="help-text db-help" id="syntax-help">Copy the report text below and paste it into the appropriate bug reporting channel. Note: This field will be empty until all required fields are filled in</p>
+      <div class="callout secondary exp">
+        <pre class="bug-syntax" id="syntax"></pre>
+        <button type="button" class="button small cb-btn" id="copy-btn">Copy</button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+    <script src="bugreport.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

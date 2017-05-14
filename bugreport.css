@@ -1,0 +1,18 @@
+.bug-syntax {
+    white-space: pre-wrap;
+}
+input:required:invalid {
+    border-color: red;
+}
+.db-help {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.cb-btn {
+    position: absolute;
+	top: 0;
+	right: 0;
+}
+.exp {
+    min-height: 60px;
+}
