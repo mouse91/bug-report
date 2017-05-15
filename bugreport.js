@@ -2,7 +2,8 @@ function updateSyntax() {
     var desc = $('#desc-field').val();
     var expected = $('#exp-field').val();
     var actual = $('#act-field').val();
-    var settings = $('#sys-field').val();
+    var client = $('#client-field').val();
+    var system = $('#sys-field').val();
     var steps = '';
     var bugtext = '';
     for (var i = 1; i <= window.sct; i++) {
@@ -11,11 +12,8 @@ function updateSyntax() {
             steps = steps + ' - ' + step;
         }
     }
-    if (desc && expected && actual && steps) {
-        bugtext = '!submit ' + desc + ' | Steps to Reproduce:' + steps + ' Expected Result: ' + expected + ' Actual Result: ' + actual;
-        if (settings) {
-            bugtext = bugtext + ' System Settings: ' + settings;
-        }
+    if (desc && expected && actual && client && system && steps) {
+        bugtext = '!submit ' + desc + ' | Steps to Reproduce:' + steps + ' Expected Result: ' + expected + ' Actual Result: ' + actual + ' Client Settings: ' + client + ' System Settings: ' + system;
     }
     $('#syntax').text(bugtext);
 }
