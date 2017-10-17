@@ -4,21 +4,54 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Discord Bug Syntax Tool</title>
+    <title>Unofficial Discord Bug Syntax Tool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="bugreport.css" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-101730653-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </head>
   <body>
+    <div class="top-bar blurple">
+      <div class="top-bar-left">
+        <ul class="menu show-for-small-only">
+          <li class="menu-text">Unofficial Bug Syntax Tool</li>
+          <li class="m-item act-pg"><a href="./"><i class="fa fa-plus-square-o"></i></a></li>
+          <li class="m-item"><a href="./edit"><i class="fa fa-pencil-square-o"></i></a></li>
+          <li class="m-item"><a id="switch-mobile"><i class="fa fa-moon-o"></i></a></li>
+        </ul>
+        <ul class="menu show-for-medium">
+          <li class="menu-text">Unofficial Bug Syntax Tool</li>
+          <li class="m-item act-pg"><a href="./"><i class="fa fa-plus-square-o"></i> Create</a></li>
+          <li class="m-item"><a href="./edit"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right show-for-medium">
+        <ul class="menu">
+          <li class="m-item"><a id="switch-desktop"><i class="fa fa-moon-o"></i> Dark Mode</a></li>
+        </ul>
+      </div>
+    </div><br />
     <div class="column row">
-      <h5>Bug Report Syntax Tool</h5>
-      <div class="callout warning small">
-        <p>Before submitting a bug, make sure to check Trello and/or the Bug Report channels in case it has already been reported:</p>
-        <ul class="no-bullet">
-            <li><a href="https://trello.com/b/AExxR9lU/canary-bugs">Trello board: Canary</a></li>
-            <li><a href="https://trello.com/b/Vqrkz3KO/android-beta-bugs">Trello board: Android</a></li>
-            <li><a href="https://trello.com/b/vLPlnX60/ios-testflight-bugs">Trello board: iOS</a></li>
-            <li><a href="https://trello.com/b/UyU76Esh/linux-bugs">Trello board: Linux</a></li>
+      <h5>Create a bug report</h5>
+      <div class="callout primary small">
+        <strong>Remember:</strong>
+        <ul>
+          <li>Check the Trello boards and/or bug report channels in case your bug has already been reported: <div class="small button-group">
+          <a class="button blurple" target="_blank" href="https://trello.com/b/AExxR9lU/canary-bugs"><i class="fa fa-desktop"></i> Desktop</a>
+          <a class="button blurple" target="_blank" href="https://trello.com/b/Vqrkz3KO/android-beta-bugs"><i class="fa fa-android"></i> Android</a>
+          <a class="button blurple" target="_blank" href="https://trello.com/b/vLPlnX60/ios-testflight-bugs"><i class="fa fa-apple"></i> iOS</a>
+          <a class="button blurple" target="_blank" href="https://trello.com/b/UyU76Esh/linux-bugs"><i class="fa fa-linux"></i> Linux</a>
+        </div></li>
+          <li>Avoid including links in your report. Instead ask for a <strong class="bh">Bug Hunter</strong> to attach images/links for you</li>
+          <li>Screenshots are required for visual bugs</li>
         </ul>
       </div>
       <label for="desc-field">Short Description</label>
@@ -28,8 +61,8 @@
         <legend><label>Steps to Reproduce</label></legend>
         <p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
         <div class="button-group small">
-          <button type="button" class="button" id="add-btn"><i class="fi-plus"></i> Add</button>
-          <button type="button" class="button" id="del-btn"><i class="fi-minus"></i> Remove</button>
+          <button type="button" class="button blurple" id="add-btn"><i class="fi-plus"></i> Add</button>
+          <button type="button" class="button blurple" id="del-btn"><i class="fi-minus"></i> Remove</button>
         </div>
         <div class="input-group" id="s1-grp">
           <span class="input-group-label"><small>Step 1</small></span>
@@ -37,23 +70,62 @@
         </div>
       </fieldset>
       <label for="exp-field">Expected Result</label>
-      <p class="help-text db-help" id="exp-help">What should happen when you follow the steps?</p>
+      <p class="help-text db-help" id="exp-help">What *should* happen when following the steps? (i.e. if the bug didn't occur)</p>
       <input type="text" id="exp-field" aria-describedby="exp-help" required>
       <label for="act-field">Actual Result</label>
-      <p class="help-text db-help" id="act-help">What actually happens when you follow the steps?</p>
+      <p class="help-text db-help" id="act-help">What *actually* happens when following the steps?</p>
       <input type="text" id="act-field" aria-describedby="act-help" required>
       <label for="client-field">Client Version</label>
-      <p class="help-text db-help" id="client-help">The version/build of Discord you're using, e.g. Canary 0.0.154</p>
+      <p class="help-text db-help" id="client-help">The version/build of Discord you're using, e.g. TestFlight 1.9.2 <a data-open="client-ver-modal">(help)</a></p>
       <input type="text" id="client-field" aria-describedby="client-help" required>
       <label for="sys-field">System Settings</label>
-      <p class="help-text db-help" id="sys-help">Your system settings including OS and version. Also include your device model if on mobile</p>
+      <p class="help-text db-help" id="sys-help">Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3</p>
       <input type="text" id="sys-field" aria-describedby="sys-help" required>
       <label>Report Syntax</label>
       <p class="help-text db-help" id="syntax-help">Copy the report text below and paste it into the appropriate bug reporting channel. Note: This field will be empty until all required fields are filled in</p>
       <div class="callout secondary exp">
         <pre class="bug-syntax" id="syntax"></pre>
-        <button type="button" class="button small cb-btn" id="copy-btn">Copy</button>
+        <button type="button" class="button small cb-btn blurple" id="copy-btn">Copy</button>
       </div>
+    </div>
+    <div class="reveal" id="client-ver-modal" data-reveal>
+      <h4>Finding your Discord client version</h4>
+      <dl>
+        <dt>Android/iOS</dt>
+        <dd>
+          <ul>
+            <li>Open the Settings menu and scroll down</li>
+            <li>The version number should be listed at the bottom or next to the 'Change Log' entry</li>
+            <li>Also include if you're using a Testflight (inc. build number) or Alpha/Beta build</li>
+          </ul>
+        </dd>
+        <dt>Windows/Linux</dt>
+        <dd>
+          <ul>
+            <li>Open <code>%appdata%\discordcanary</code> (Windows) or <code>~/.config/discordcanary</code> (Linux)</li>
+            <li>The folder with the highest number is your version number</li>
+            <li>If using the PTB/stable clients, check the 'discordptb' or 'discord' folders instead</li>
+          </ul>
+        </dd>
+        <dt>macOS</dt>
+        <dd>
+          <ul>
+            <li>Click 'Discord Canary' (or similar) on the menu bar</li>
+            <li>Click 'About Discord'</li>
+          </ul>
+        </dd>
+        <dt>Desktop Build Numbers</dt>
+        <dd>
+          <ul>
+            <li>Open Dev Tools using <kbd>Ctrl+Shift+I</kbd> (Windows/Linux) or <kbd>Cmd+Opt+I</kbd> (macOS)</li>
+            <li>Click the Console tab</li>
+            <li>Scroll up and find the entry beginning '[BUILD INFO]'</li>
+          </ul>
+        </dd>
+      </dl>
+      <button type="button" class="close-button" data-close aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
@@ -61,6 +133,7 @@
     <script src="bugreport.js"></script>
     <script>
       $(document).foundation();
+      $(document).ready(pageLoad('create'));
     </script>
   </body>
 </html>

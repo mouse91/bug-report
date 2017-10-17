@@ -10,9 +10,71 @@ input:required:invalid {
 }
 .cb-btn {
     position: absolute;
-	top: 0;
-	right: 0;
+    top: 0;
+    right: 0;
 }
 .exp {
-    min-height: 60px;
+    min-height: 3.750rem;
+}
+.top-bar ul {
+    color: #FFF;
+    background-color: #7289DA;
+}
+.top-bar ul a {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #FFF;
+    opacity: .8;
+}
+.top-bar ul .act-pg a {
+    opacity: 1;
+}
+.m-item {
+    padding-bottom: 0.2rem;
+}
+.blurple {
+    background-color: #7289DA;
+}
+.callout, .reveal {
+    font-size: 0.875rem;
+}
+input[type="text"], select {
+    height: 2.125rem;
+    font-size: 0.875rem;
+}
+.button:focus, .button:hover {
+    background-color: #5970C1;
+}
+.button-group a {
+    width: 5.5rem;
+}
+.bh {
+    color: #e74c3c;
+}
+.show-for-small-only > li > a {
+    font-size: 1.375rem;
+}
+body.dark {
+    background-color: #2C2F33;
+    color: #FFF;
+}
+body.dark input:focus {
+    background-color: #484b51;
+}
+body.dark label {
+    color: #FFF;
+}
+body.dark .help-text {
+    color: rgba(255,255,255,0.7);
+}
+body.dark div.callout {
+    background-color: #484b51;
+    color: rgba(255,255,255,0.7);
+}
+body.dark legend {
+    background-color: inherit;
+}
+body.dark input, body.dark select, body.dark .input-group-label, body.dark div.reveal, body.dark div.exp {
+    background-color: #484b51;
+    color: #FFF;
 }
