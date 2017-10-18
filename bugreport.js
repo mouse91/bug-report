@@ -63,11 +63,15 @@ function addStep() {
     $('#steps-fs').append(stxt);
 }
 
-function removeStep() {
+function removeStep(event) {
     if (window.sct > 1) {
         $('#s' + window.sct + '-grp').remove();
         window.sct--;
-        updateSyntax();
+        if (typeof(event.data) !== 'undefined' && event.data.edit) {
+            updateEditSyntax();
+        } else {
+            updateSyntax();
+        }
     }
 }
 
@@ -108,7 +112,7 @@ function updateField(event) {
             var steps_html = '<fieldset class="fieldset" id="steps-fs"><legend><label>Steps to Reproduce</label></legend><p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below. Also note that the steps entered below will replace your current steps</p><div class="button-group small"><button type="button" class="button blurple" id="add-btn"><i class="fi-plus"></i> Add</button><button type="button" class="button blurple" id="del-btn"><i class="fi-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label"><small>Step 1</small></span><input type="text" class="input-group-field" id="s1-field" required></div></fieldset>';
             $('#edit-field').html(steps_html);
             $('#add-btn').on('click', addStep);
-            $('#del-btn').on('click', removeStep);
+            $('#del-btn').on('click', {edit: true}, removeStep);
             break;
         default:
             if (event.target.value in field_data) {
@@ -152,7 +156,7 @@ function pageLoad(page) {
     var st = '';
     switch (page) {
         case "create":
-            $(document).on('input', 'input[id*="-field"]', updateSyntax);
+            $('div#content').on('input', 'input[id*="-field"]', updateSyntax);
             $('#add-btn').on('click', addStep);
             $('#del-btn').on('click', removeStep);
             cb_btn = '#copy-btn';
@@ -161,7 +165,7 @@ function pageLoad(page) {
         case "edit":
             $('#edit-section').on('change', updateField);
             $('#edit-id').on('input', updateEditSyntax);
-            $(document).on('input', 'input[id*="-field"]', updateEditSyntax);    
+            $('div#content').on('input', 'input[id*="-field"]', updateEditSyntax);    
             $('#edit-section').change();
             cb_btn = '#edit-copy-btn';
             st = '#edit-syntax';
@@ -178,7 +182,7 @@ function pageLoad(page) {
             $(e.trigger).html('Copy');
         }, 2000);
     });
-    $(document).on('click', 'a[id*="switch-"]', switchMode);
+    $('body').on('click', 'a[id*="switch-"]', switchMode);
     if (loadTheme()) {
         switchMode();
     }
