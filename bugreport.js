@@ -55,6 +55,7 @@ function updateSyntax() {
         bugtext = '!submit ' + desc + ' | Steps to Reproduce:' + steps + ' Expected Result: ' + expected + ' Actual Result: ' + actual + ' Client Settings: ' + client + ' System Settings: ' + system;
     }
     $('#syntax').text(bugtext);
+    $('#lrg-rep').toggleClass('hidden', bugtext.length < 1400);
 }
 
 function addStep() {
@@ -165,7 +166,7 @@ function pageLoad(page) {
         case "edit":
             $('#edit-section').on('change', updateField);
             $('#edit-id').on('input', updateEditSyntax);
-            $('div#content').on('input', 'input[id*="-field"]', updateEditSyntax);    
+            $('div#content').on('input', 'input[id*="-field"]', updateEditSyntax);
             $('#edit-section').change();
             cb_btn = '#edit-copy-btn';
             st = '#edit-syntax';

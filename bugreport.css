@@ -54,6 +54,9 @@ input[type="text"], select {
 .show-for-small-only > li > a {
     font-size: 1.375rem;
 }
+.hidden {
+    display: none;
+}
 body.dark {
     background-color: #2C2F33;
     color: #FFF;
