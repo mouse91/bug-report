@@ -44,6 +44,7 @@ input[type="text"], select {
 }
 @supports (-webkit-overflow-scrolling: touch) {
     input[type="text"], select {
+        height: 2.4375rem;
         font-size: 1rem;
     }
 }
