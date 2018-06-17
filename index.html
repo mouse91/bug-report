@@ -15,6 +15,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-101730653-1', 'auto');
+      ga('set', 'anonymizeIp', true);
       ga('send', 'pageview');
     </script>
   </head>
@@ -50,8 +51,7 @@
           <a class="button blurple" target="_blank" href="https://trello.com/b/vLPlnX60/ios-testflight-bugs"><i class="fa fa-apple"></i> iOS</a>
           <a class="button blurple" target="_blank" href="https://trello.com/b/UyU76Esh/linux-bugs"><i class="fa fa-linux"></i> Linux</a>
         </div></li>
-          <li>Avoid including links in your report. Instead ask for a <strong class="bh">Bug Hunter</strong> to attach images/links for you</li>
-          <li>Screenshots are required for visual bugs</li>
+          <li>Screenshots/video may help explain your report and are required for visual bugs. You can post links to these in a client chat channel and ask for a <strong class="bh">Bug Hunter</strong> to attach them for you</li>
         </ul>
       </div>
       <label for="desc-field">Short Description</label>
@@ -102,22 +102,7 @@
             <li>Also include if you're using a Testflight (inc. build number) or Alpha/Beta build</li>
           </ul>
         </dd>
-        <dt>Windows/Linux</dt>
-        <dd>
-          <ul>
-            <li>Open <code>%appdata%\discordcanary</code> (Windows) or <code>~/.config/discordcanary</code> (Linux)</li>
-            <li>The folder with the highest number is your version number</li>
-            <li>If using the PTB/stable clients, check the 'discordptb' or 'discord' folders instead</li>
-          </ul>
-        </dd>
-        <dt>macOS</dt>
-        <dd>
-          <ul>
-            <li>Click 'Discord Canary' (or similar) on the menu bar</li>
-            <li>Click 'About Discord'</li>
-          </ul>
-        </dd>
-        <dt>Desktop Build Numbers</dt>
+        <dt>Desktop</dt>
         <dd>
           <ul>
             <li>Open Dev Tools using <kbd>Ctrl+Shift+I</kbd> (Windows/Linux) or <kbd>Cmd+Opt+I</kbd> (macOS)</li>
