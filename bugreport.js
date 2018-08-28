@@ -109,8 +109,8 @@ function updateField(event) {
     $('#add-btn').off('click');
     $('#del-btn').off('click');
     switch(event.target.value) {
-        case "steps":
-            var steps_html = '<fieldset class="fieldset" id="steps-fs"><legend><label>Steps to Reproduce</label></legend><p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below. Also note that the steps entered below will replace your current steps</p><div class="button-group small"><button type="button" class="button blurple" id="add-btn"><i class="fi-plus"></i> Add</button><button type="button" class="button blurple" id="del-btn"><i class="fi-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label"><small>Step 1</small></span><input type="text" class="input-group-field" id="s1-field" required></div></fieldset>';
+        case "steps":            
+            var steps_html = '<label>Steps to Reproduce</label><p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label"><small>Step 1</small></span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
             $('#edit-field').html(steps_html);
             $('#add-btn').on('click', addStep);
             $('#del-btn').on('click', {edit: true}, removeStep);
@@ -124,30 +124,30 @@ function updateField(event) {
 }
 
 function loadTheme() {
-    var dark = false;
+    var light = false;
     if (typeof(Storage) !== 'undefined') {
-        dark = (localStorage.getItem('dark') == 'true');
+        light = (localStorage.getItem('light') == 'true');
     }
-    return dark;
+    return light;
 }
 
 function setTheme() {
     if (typeof(Storage) !== 'undefined') {
-        var dark = false;
-        if ($('body').attr('class') == 'dark') {
-            dark = true;
+        var light = false;
+        if ($('body').attr('class') == 'light') {
+            light = true;
         }
-        localStorage.setItem('dark', dark.toString());
+        localStorage.setItem('light', light.toString());
     }
 }
 
 function switchMode() {
-    var bc = $('body').toggleClass('dark')[0].className;
+    var bc = $('body').toggleClass('light')[0].className;
     if (bc == '') {
-        bc = 'light';
+        bc = 'dark';
     }
-    $('#switch-mobile').html('<i class="fa fa-' + mm[bc].m + '-o"></i>');
-    $('#switch-desktop').html('<i class="fa fa-' + mm[bc].m + '-o"></i> ' + mm[bc].d);
+    $('#switch-mobile').html('<i class="far fa-' + mm[bc].m + '"></i>');
+    $('#switch-desktop').html('<i class="far fa-' + mm[bc].m + '"></i> ' + mm[bc].d);
     setTheme();
 }
 
@@ -172,13 +172,14 @@ function pageLoad(page) {
             st = '#edit-syntax';
             break;
     }
-    var cb = new Clipboard(cb_btn, {
+    var cb = new ClipboardJS(cb_btn, {
         text: function(trigger) {
             return $(st).text();
         }
     });
     cb.on('success', function(e) {
         $(e.trigger).html('Copied');
+        ga('send', 'event', 'syntax', 'copy');
         setTimeout(function() {
             $(e.trigger).html('Copy');
         }, 2000);

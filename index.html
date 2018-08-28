@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unofficial Discord Bug Syntax Tool</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="bugreport.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon-180x180.png" sizes="180x180" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -20,75 +23,76 @@
     </script>
   </head>
   <body>
-    <div class="top-bar blurple">
+    <div class="top-bar">
       <div class="top-bar-left">
         <ul class="menu show-for-small-only">
           <li class="menu-text">Unofficial Bug Syntax Tool</li>
-          <li class="m-item act-pg"><a href="./"><i class="fa fa-plus-square-o"></i></a></li>
-          <li class="m-item"><a href="./edit"><i class="fa fa-pencil-square-o"></i></a></li>
-          <li class="m-item"><a id="switch-mobile"><i class="fa fa-moon-o"></i></a></li>
+          <li class="act-pg"><a href="./"><i class="far fa-plus-square"></i></a></li>
+          <li><a href="./edit"><i class="far fa-edit"></i></a></li>
+          <li><a id="switch-mobile"><i class="far fa-sun"></i></a></li>
         </ul>
         <ul class="menu show-for-medium">
           <li class="menu-text">Unofficial Bug Syntax Tool</li>
-          <li class="m-item act-pg"><a href="./"><i class="fa fa-plus-square-o"></i> Create</a></li>
-          <li class="m-item"><a href="./edit"><i class="fa fa-pencil-square-o"></i> Edit</a></li>
+          <li class="act-pg"><a href="./"><i class="far fa-plus-square"></i> Create</a></li>
+          <li><a href="./edit"><i class="far fa-edit"></i> Edit</a></li>
         </ul>
       </div>
       <div class="top-bar-right show-for-medium">
         <ul class="menu">
-          <li class="m-item"><a id="switch-desktop"><i class="fa fa-moon-o"></i> Dark Mode</a></li>
+          <li><a id="switch-desktop"><i class="far fa-sun"></i> Light Mode</a></li>
         </ul>
       </div>
     </div><br />
     <div class="column row" id="content">
       <h5>Create a bug report</h5>
-      <div class="callout primary small">
+      <div class="callout mbox">
         <strong>Remember:</strong>
         <ul>
-          <li>Check the Trello boards and/or bug report channels in case your bug has already been reported: <div class="small button-group">
-          <a class="button blurple" target="_blank" href="https://trello.com/b/AExxR9lU/desktop-bugs"><i class="fa fa-desktop"></i> Desktop</a>
-          <a class="button blurple" target="_blank" href="https://trello.com/b/Vqrkz3KO/android-beta-bugs"><i class="fa fa-android"></i> Android</a>
-          <a class="button blurple" target="_blank" href="https://trello.com/b/vLPlnX60/ios-testflight-bugs"><i class="fa fa-apple"></i> iOS</a>
-          <a class="button blurple" target="_blank" href="https://trello.com/b/UyU76Esh/linux-bugs"><i class="fa fa-linux"></i> Linux</a>
+          <li>Check the Trello boards and/or bug report channels in case your bug has already been reported: <div class="small button-group trello">
+          <a class="button" target="_blank" href="https://trello.com/b/AExxR9lU/desktop-bugs"><i class="fas fa-desktop"></i> Desktop</a>
+          <a class="button" target="_blank" href="https://trello.com/b/Vqrkz3KO/android-beta-bugs"><i class="fab fa-android"></i> Android</a>
+          <a class="button" target="_blank" href="https://trello.com/b/vLPlnX60/ios-testflight-bugs"><i class="fab fa-apple"></i> iOS</a>
+          <a class="button" target="_blank" href="https://trello.com/b/UyU76Esh/linux-bugs"><i class="fab fa-linux"></i> Linux</a>
         </div></li>
           <li>Screenshots/video may help explain your report and are required for visual bugs. You can post links to these in a client chat channel and ask for a <strong class="bh">Bug Hunter</strong> to attach them for you</li>
+          <li>Bananas are an excellent source of potassium</li>
         </ul>
       </div>
       <label for="desc-field">Short Description</label>
-      <p class="help-text db-help" id="desc-help">Describe your bug in a single sentence</p>
+      <p class="help-text" id="desc-help">Describe your bug in a single sentence</p>
       <input type="text" id="desc-field" aria-describedby="desc-help" required>
-      <fieldset class="fieldset" id="steps-fs">
-        <legend><label>Steps to Reproduce</label></legend>
-        <p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
+      <label>Steps to Reproduce</label>
+      <p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
+      <div class="callout mbox" id="steps-fs">
         <div class="button-group small">
-          <button type="button" class="button blurple" id="add-btn"><i class="fi-plus"></i> Add</button>
-          <button type="button" class="button blurple" id="del-btn"><i class="fi-minus"></i> Remove</button>
+          <button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button>
+          <button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button>
         </div>
         <div class="input-group" id="s1-grp">
           <span class="input-group-label"><small>Step 1</small></span>
           <input type="text" class="input-group-field" id="s1-field" required>
         </div>
-      </fieldset>
+      </div>
       <label for="exp-field">Expected Result</label>
-      <p class="help-text db-help" id="exp-help">What *should* happen when following the steps? (i.e. if the bug didn't occur)</p>
+      <p class="help-text" id="exp-help">What *should* happen when following the steps? (i.e. if the bug didn't occur)</p>
       <input type="text" id="exp-field" aria-describedby="exp-help" required>
       <label for="act-field">Actual Result</label>
-      <p class="help-text db-help" id="act-help">What *actually* happens when following the steps?</p>
+      <p class="help-text" id="act-help">What *actually* happens when following the steps?</p>
       <input type="text" id="act-field" aria-describedby="act-help" required>
       <label for="client-field">Client Version</label>
-      <p class="help-text db-help" id="client-help">The version/build of Discord you're using, e.g. TestFlight 1.9.2 <a data-open="client-ver-modal">(help)</a></p>
+      <p class="help-text" id="client-help">The version/build of Discord you're using, e.g. TestFlight 1.9.2 <a data-open="client-ver-modal">(help)</a></p>
       <input type="text" id="client-field" aria-describedby="client-help" required>
       <label for="sys-field">System Settings</label>
-      <p class="help-text db-help" id="sys-help">Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3</p>
+      <p class="help-text" id="sys-help">Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3</p>
       <input type="text" id="sys-field" aria-describedby="sys-help" required>
-      <div class="callout warning small hidden" id="lrg-rep">
-        <p>Your report is quite large. Consider shortening it to ensure that Bug Bot accepts it and Bug Hunters are able to approve/deny</p>
+      <div class="callout warn hidden" id="lrg-rep">
+        <p>Your report is quite large. Consider shortening it to ensure that it can be accepted by Bug Bot and Bug Hunters are able to approve/deny</p>
       </div>
       <label>Report Syntax</label>
-      <p class="help-text db-help" id="syntax-help">Copy the report text below and paste it into the appropriate bug reporting channel. Note: This field will be empty until all required fields are filled in</p>
-      <div class="callout secondary exp">
+      <p class="help-text" id="syntax-help">Copy the report text below and paste it into the appropriate bug reporting channel. Note: This field will be empty until all required fields are filled in</p>
+      <div class="callout syntaxbox">
         <pre class="bug-syntax" id="syntax"></pre>
-        <button type="button" class="button small cb-btn blurple" id="copy-btn">Copy</button>
+        <button type="button" class="button small cb-btn" id="copy-btn">Copy</button>
       </div>
     </div>
     <div class="reveal" id="client-ver-modal" data-reveal>
@@ -117,7 +121,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js"></script>
     <script src="bugreport.js"></script>
     <script>
       $(document).foundation();
