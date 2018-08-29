@@ -110,14 +110,14 @@ function updateField(event) {
     $('#del-btn').off('click');
     switch(event.target.value) {
         case "steps":            
-            var steps_html = '<label>Steps to Reproduce</label><p class="help-text db-help" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label"><small>Step 1</small></span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
+            var steps_html = '<label>Steps to Reproduce</label><p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label"><small>Step 1</small></span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
             $('#edit-field').html(steps_html);
             $('#add-btn').on('click', addStep);
             $('#del-btn').on('click', {edit: true}, removeStep);
             break;
         default:
             if (event.target.value in field_data) {
-                var field_html = '<label for="' + event.target.value + '-field">' + field_data[event.target.value].fn + '</label><p class="help-text db-help" id="' + event.target.value + '-help">' + field_data[event.target.value].ht + '</p><input type="text" id="' + event.target.value + '-field" aria-describedby="' + event.target.value + '-help" required>';
+                var field_html = '<label for="' + event.target.value + '-field">' + field_data[event.target.value].fn + '</label><p class="help-text" id="' + event.target.value + '-help">' + field_data[event.target.value].ht + '</p><input type="text" id="' + event.target.value + '-field" aria-describedby="' + event.target.value + '-help" required>';
                 $('#edit-field').html(field_html);
             }
     }

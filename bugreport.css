@@ -1,7 +1,7 @@
 body {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 300;
-	background-color: #393c40;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    background-color: #393c40;
     color: #ffffff;
 }
 
@@ -18,8 +18,9 @@ body.light {
     color: #0a0a0a;
 }
 
-h5 {
-	font-weight: 600;
+h4, h5 {
+    font-family: inherit;
+    font-weight: 600;
 }
 
 .bug-syntax {
@@ -28,11 +29,11 @@ h5 {
 
 .syntaxbox {
     min-height: 3.750rem;
-	border-radius: 0.1875rem;
+    border-radius: 0.1875rem;
 }
 
 body.light .syntaxbox {
-	background-color: #eaeaea;
+    background-color: #eaeaea;
 }
 
 input:required:invalid {
@@ -42,7 +43,7 @@ input:required:invalid {
 input[type="text"], select {
     height: 2.125rem;
     font-size: 0.875rem;
-	border-radius: 0.1875rem;
+    border-radius: 0.1875rem;
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
@@ -53,7 +54,7 @@ input[type="text"], select {
 }
 
 body:not(.light) [type=text]:focus {
-	background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.1);
 }
 
 body:not(.light) input[type="text"],
@@ -65,23 +66,23 @@ body:not(.light) div.syntaxbox {
 }
 
 select {
-	line-height: 1.15;
+    line-height: 1.15;
 }
 
 body:not(.light) select option {
-	background-color: #313339;
+    background-color: #313339;
 }
 
 .help-text {
     margin-top: 0;
     margin-bottom: 0.5rem;
-	font-style: normal;
-	color: rgba(255,255,255,.8);
+    font-style: normal;
+    color: rgba(255,255,255,.8);
 }
 
 label {
-	font-weight: 600;
-	color: #ffffff;
+    font-weight: 600;
+    color: #ffffff;
 }
 
 body.light label {
@@ -93,14 +94,16 @@ body.light .help-text {
 }
 
 .button {
-	background-color: #7289da;
-	border-radius: 0.1875rem;
+    background-color: #7289da;
+    border-radius: 0.1875rem;
+    font-family: inherit;
 }
 
 .cb-btn {
     position: absolute;
     top: 0;
     right: 0;
+    font-size: 0.75rem;
 }
 
 .button:focus, .button:hover {
@@ -112,32 +115,32 @@ body.light .help-text {
 }
 
 .button-group .button {
-	border-radius: 0;
+    border-radius: 0;
 }
 
 .button-group>:first-child {
-	border-radius: 0.1875rem 0 0 0.1875rem;
+    border-radius: 0.1875rem 0 0 0.1875rem;
 }
 
 .button-group>:last-child {
-	border-radius: 0 0.1875rem 0.1875rem 0;
+    border-radius: 0 0.1875rem 0.1875rem 0;
 }
 
 @media screen and (max-width: 39.9375em) {
-	.trello > .button {
-		border-radius: 0.1875rem;
-		width: 100%;
-	}
+    .trello > .button {
+        border-radius: 0.1875rem;
+        width: 49%;
+    }
 }
 
 .trello {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .top-bar {
-	padding: 0;
-	background-color: #7289da;
+    padding: 0;
+    background-color: #7289da;
 }
 
 .top-bar ul {
@@ -157,7 +160,7 @@ ul .act-pg > a {
 }
 
 .act-pg {
-	box-shadow: 0 -0.125rem 0 0 #ffffff inset;
+    box-shadow: 0 -0.125rem 0 0 #ffffff inset;
 }
 
 .show-for-small-only > li > a {
@@ -165,11 +168,11 @@ ul .act-pg > a {
 }
 
 .top-bar ul > :not(.menu-text) :hover {
-	opacity: 1;
+    opacity: 1;
 }
 
 .show-for-small-only > li > a > i {
-	margin-right: 0;
+    margin-right: 0;
 }
 
 .callout, .reveal {
@@ -177,15 +180,15 @@ ul .act-pg > a {
 }
 
 .reveal {
-	background-color: #333639;
+    background-color: #333639;
 }
 
 .mbox {
-	padding: 1.25rem;
-	border-radius: 0.1875rem;
-	border: 0.0625rem solid rgba(0,0,0,.3);
-	color: rgba(255,255,255,.7);
-	background-color: rgba(0,0,0,.1);
+    padding: 1.25rem;
+    border-radius: 0.1875rem;
+    border: 0.0625rem solid rgba(0,0,0,.3);
+    color: rgba(255,255,255,.7);
+    background-color: rgba(0,0,0,.1);
 }
 
 body.light .callout {
@@ -193,22 +196,22 @@ body.light .callout {
 }
 
 body.light .mbox, body.light .reveal {
-	background-color: #f3f3f3;
+    background-color: #f3f3f3;
 }
 
 .warn {
-	background-color: rgba(240,71,71,.3);
+    background-color: rgba(240,71,71,.3);
     border-radius: 0.1875rem;
     border: 0.125rem solid rgba(240,71,71,.75);
     color: #ffffff;
     font-weight: bold;
-	padding: 0.5rem;
+    padding: 0.5rem;
 }
 
 .input-group > :first-child {
-	border-radius: 0.1875rem 0 0 0.1875rem;
+    border-radius: 0.1875rem 0 0 0.1875rem;
 }
 
 .input-group > :last-child {
-	border-radius: 0 0.1875rem 0.1875rem 0;
+    border-radius: 0 0.1875rem 0.1875rem 0;
 }
