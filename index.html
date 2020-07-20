@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unofficial Discord Bug Syntax Tool</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101730653-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-101730653-1', {'anonymize_ip': true});
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
@@ -12,15 +19,6 @@
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel="icon" type="image/png" href="images/favicon-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon-180x180.png" sizes="180x180" />
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-101730653-1', 'auto');
-      ga('set', 'anonymizeIp', true);
-      ga('send', 'pageview');
-    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -48,23 +46,22 @@
       <div class="callout mbox">
         <strong>Remember:</strong>
         <ul>
-          <li>Check the Trello boards and/or bug report channels in case your bug has already been reported: <div class="small button-group trello">
-          <a class="button" target="_blank" href="https://trello.com/b/AExxR9lU/desktop-bugs"><i class="fas fa-desktop"></i> Desktop</a>
-          <a class="button" target="_blank" href="https://trello.com/b/Vqrkz3KO/android-beta-bugs"><i class="fab fa-android"></i> Android</a>
-          <a class="button" target="_blank" href="https://trello.com/b/vLPlnX60/ios-testflight-bugs"><i class="fab fa-apple"></i> iOS</a>
-          <a class="button" target="_blank" href="https://trello.com/b/UyU76Esh/linux-bugs"><i class="fab fa-linux"></i> Linux</a>
-          <a class="button" target="_blank" href="https://trello.com/b/Fb0LyRnD/store-bugs"><i class="fas fa-store-alt"></i> Store</a>
-          <a class="button" target="_blank" href="https://trello.com/b/k6jr4NyY/overlay-bugs"><i class="fas fa-window-restore"></i> Overlay</a>
+          <li>Check the workboards and/or bug report channels in case your bug has already been reported: <div class="small button-group board">
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/3/"><i class="fas fa-desktop"></i> Desktop</a>
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/1/"><i class="fab fa-android"></i> Android</a>
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/2/"><i class="fab fa-apple"></i> iOS</a>
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/18/"><i class="fab fa-linux"></i> Linux</a>
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/14/"><i class="fab fa-discord"></i> Marketing</a>
+          <a class="button" target="_blank" href="https://bugs.discord.com/project/view/15/"><i class="fas fa-window-restore"></i> Overlay</a>
         </div></li>
-          <li>Screenshots/video may help explain your report and are required for visual bugs. You can post links to these in a client chat channel and ask for a <strong class="bh">Bug Hunter</strong> to attach them for you</li>
-          <li>Bananas are an excellent source of potassium</li>
+          <li>Screenshots/video may help explain your report and are required for visual bugs. You can ask for a <strong class="bh">Bug Squasher+</strong> to attach them for you</li>
         </ul>
       </div>
-      <label for="desc-field">Short Description</label>
+      <label for="desc-field">Title</label>
       <p class="help-text" id="desc-help">Describe your bug in a single sentence</p>
       <input type="text" id="desc-field" aria-describedby="desc-help" required>
       <label>Steps to Reproduce</label>
-      <p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
+      <p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Tildes will be added automatically for each step. To add/remove fields, you can use the buttons below</p>
       <div class="callout mbox" id="steps-fs">
         <div class="button-group small">
           <button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button>
@@ -82,13 +79,13 @@
       <p class="help-text" id="act-help">What *actually* happens when following the steps?</p>
       <input type="text" id="act-field" aria-describedby="act-help" required>
       <label for="client-field">Client Version</label>
-      <p class="help-text" id="client-help">The version/build of Discord you're using, e.g. TestFlight 1.9.2 <a data-open="client-ver-modal">(help)</a></p>
+      <p class="help-text" id="client-help">The version/build of Discord you're using, e.g. TestFlight 31.0 <a data-open="client-ver-modal">(help)</a></p>
       <input type="text" id="client-field" aria-describedby="client-help" required>
       <label for="sys-field">System Settings</label>
-      <p class="help-text" id="sys-help">Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3</p>
+      <p class="help-text" id="sys-help">Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 11, iOS 13.5.1</p>
       <input type="text" id="sys-field" aria-describedby="sys-help" required>
       <div class="callout warn hidden" id="lrg-rep">
-        <p>Your report is quite large. Consider shortening it to ensure that it can be accepted by Bug Bot and Bug Hunters are able to approve/deny</p>
+        <p>Your report is quite large. Consider shortening it to ensure that it can be accepted by DBug and Bug Squashers+ are able to approve/deny</p>
       </div>
       <label>Report Syntax</label>
       <p class="help-text" id="syntax-help">Copy the report text below and paste it into the appropriate bug reporting channel. Note: This field will be empty until all required fields are filled in</p>
@@ -104,16 +101,15 @@
         <dd>
           <ul>
             <li>Open the Settings menu and scroll down</li>
-            <li>The version number should be listed at the bottom or next to the 'Change Log' entry</li>
-            <li>Also include if you're using a Testflight (inc. build number) or Alpha/Beta build</li>
+            <li>The version string should be listed at the bottom or next to the 'Change Log' entry</li>
+            <li>Note: If you're running an iOS TestFlight build, include the build number displayed in the TestFlight app</li>
           </ul>
         </dd>
         <dt>Desktop</dt>
         <dd>
           <ul>
-            <li>Open Dev Tools using <kbd>Ctrl+Shift+I</kbd> (Windows/Linux) or <kbd>Cmd+Opt+I</kbd> (macOS)</li>
-            <li>Click the Console tab</li>
-            <li>Scroll up and find the entry beginning '[BUILD INFO]'</li>
+            <li>Open your User Settings and check the bottom of the sidebar</li>
+            <li>Alternatively, open Dev Tools using <kbd>Ctrl+Shift+I</kbd> (Windows/Linux) or <kbd>Cmd+Opt+I</kbd> (macOS), click the Console tab, and find the entry beginning [BUILD INFO]</li>
           </ul>
         </dd>
       </dl>

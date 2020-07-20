@@ -1,32 +1,39 @@
-var field_data = {
+var BugApp = {}
+
+const field_data = {
     desc: {
         fn: "Short Description",
         ht: "Describe your bug in a single sentence",
-        al: "title"
+        al: "t",
+        fi: "#desc-field"
     },
     exp: {
         fn: "Expected Result",
         ht: "What *should* happen when following the steps? (i.e. if the bug didn't occur)",
-        al: "expected"
+        al: "e",
+        fi: "#exp-field"
     },
     act: {
         fn: "Actual Result",
         ht: "What *actually* happens when following the steps?",
-        al: "actual"
+        al: "a",
+        fi: "#act-field"
     },
     client: {
         fn: "Client Version",
-        ht: "The version/build of Discord you're using, e.g. TestFlight 1.9.2",
-        al: "cs"
+        ht: "The version/build of Discord you're using, e.g. TestFlight 31.0",
+        al: "c",
+        fi: "#client-field"
     },
     sys: {
         fn: "System Settings",
-        ht: "Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 8, iOS 11.0.3",
-        al: "ss"
+        ht: "Your system settings including device model (if on mobile), OS, and version, e.g. iPhone 11, iOS 13.5.1",
+        al: "s",
+        fi: "#sys-field"
     }
 };
 
-var mm = {
+const mm = {
     dark: {
         d: "Light Mode",
         m: "sun"
@@ -38,36 +45,43 @@ var mm = {
 };
 
 function updateSyntax() {
-    var desc = $('#desc-field').val();
-    var expected = $('#exp-field').val();
-    var actual = $('#act-field').val();
-    var client = $('#client-field').val();
-    var system = $('#sys-field').val();
-    var steps = '';
-    var bugtext = '';
-    for (var i = 1; i <= window.sct; i++) {
-        var step = $('#s' + i + '-field').val();
+    let bugtext = '';
+    let report = [];
+    const elements = ['desc', 'exp', 'act', 'client', 'sys'];
+    elements.forEach(function (item, idx) {
+        let fv = $(field_data[item]['fi']).val();
+        if (fv) {
+            let element = '-' + field_data[item]['al'] + ' ' + fv;
+            report.push(element);
+        }
+    });
+    let steps = [];
+    for (let i = 1; i <= BugApp.sct; i++) {
+        let step = $('#s' + i + '-field').val();
         if (step) {
-            steps = steps + ' - ' + step;
+            steps.push(step);
         }
     }
-    if (desc && expected && actual && client && system && steps) {
-        bugtext = '!submit ' + desc + ' | Steps to Reproduce:' + steps + ' Expected Result: ' + expected + ' Actual Result: ' + actual + ' Client Settings: ' + client + ' System Settings: ' + system;
+    if (steps.length) {
+        report.splice(1, 0, '-r ' + steps.join(' ~ '));
+    }
+    if ((report.length - 1) == BugApp.fields) {
+        bugtext = '!submit ' + report.join(' ');
     }
     $('#syntax').text(bugtext);
     $('#lrg-rep').toggleClass('hidden', bugtext.length < 1400);
 }
 
 function addStep() {
-    window.sct++;
-    var stxt = '<div class="input-group" id="s' + window.sct + '-grp"><span class="input-group-label">Step ' + window.sct + '</span><input type="text" class="input-group-field" id="s' + window.sct + '-field"></div>';
+    BugApp.sct++;
+    const stxt = '<div class="input-group" id="s' + BugApp.sct + '-grp"><span class="input-group-label">Step ' + BugApp.sct + '</span><input type="text" class="input-group-field" id="s' + BugApp.sct + '-field"></div>';
     $('#steps-fs').append(stxt);
 }
 
 function removeStep(event) {
-    if (window.sct > 1) {
-        $('#s' + window.sct + '-grp').remove();
-        window.sct--;
+    if (BugApp.sct > 1) {
+        $('#s' + BugApp.sct + '-grp').remove();
+        BugApp.sct--;
         if (typeof(event.data) !== 'undefined' && event.data.edit) {
             updateEditSyntax();
         } else {
@@ -77,54 +91,55 @@ function removeStep(event) {
 }
 
 function updateEditSyntax() {
-    var edit_id = $('#edit-id').val();
-    var edit_type = $('#edit-section').val();
-    var edit_val = '';
-    var alias = '';
+    const edit_id = $('#edit-id').val();
+    const edit_type = $('#edit-section').val();
+    let edit_val = '';
+    let alias = '';
     if (edit_type == 'steps') {
-        alias = 'str';
-        for (var i = 1; i <= window.sct; i++) {
-            var step = $('#s' + i + '-field').val();
+        alias = 'r';
+        let steps = [];
+        for (let i = 1; i <= BugApp.sct; i++) {
+            let step = $('#s' + i + '-field').val();
             if (step) {
-                edit_val = edit_val + ' - ' + step;
+                steps.push(step);
             }
         }
-        if (edit_val) {
-            edit_val = edit_val.substr(1);
+        if (steps.length) {
+            edit_val = steps.join(' ~ ');
         }
     } else {
         edit_val = $('#' + edit_type + '-field').val();
         alias = field_data[edit_type].al;
     }
-    var edit_txt = '';
+    let edit_txt = '';
     if (edit_id && edit_val) {
-        edit_txt = '!edit ' + edit_id + ' | ' + alias + ' | ' + edit_val;
+        edit_txt = '!edit ' + edit_id + ' -' + alias + ' ' + edit_val;
     }
     $('#edit-syntax').text(edit_txt);
 }
 
 function updateField(event) {
     $('#edit-syntax').text('');
-    window.sct = 1;
+    BugApp.sct = 1;
     $('#add-btn').off('click');
     $('#del-btn').off('click');
     switch(event.target.value) {
         case "steps":            
-            var steps_html = '<label>Steps to Reproduce</label><p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Dashes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label">Step 1</span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
+            const steps_html = '<label>Steps to Reproduce</label><p class="help-text" id="steps-help">Write each step others would have to follow to reproduce the bug. Note: Tildes will be added automatically for each step. To add/remove fields, you can use the buttons below</p><div class="callout mbox" id="steps-fs"><div class="button-group small"><button type="button" class="button" id="add-btn"><i class="fas fa-plus"></i> Add</button><button type="button" class="button" id="del-btn"><i class="fas fa-minus"></i> Remove</button></div><div class="input-group" id="s1-grp"><span class="input-group-label">Step 1</span><input type="text" class="input-group-field" id="s1-field" required></div></div>';
             $('#edit-field').html(steps_html);
             $('#add-btn').on('click', addStep);
             $('#del-btn').on('click', {edit: true}, removeStep);
             break;
         default:
             if (event.target.value in field_data) {
-                var field_html = '<label for="' + event.target.value + '-field">' + field_data[event.target.value].fn + '</label><p class="help-text" id="' + event.target.value + '-help">' + field_data[event.target.value].ht + '</p><input type="text" id="' + event.target.value + '-field" aria-describedby="' + event.target.value + '-help" required>';
+                const field_html = '<label for="' + event.target.value + '-field">' + field_data[event.target.value].fn + '</label><p class="help-text" id="' + event.target.value + '-help">' + field_data[event.target.value].ht + '</p><input type="text" id="' + event.target.value + '-field" aria-describedby="' + event.target.value + '-help" required>';
                 $('#edit-field').html(field_html);
             }
     }
 }
 
 function loadTheme() {
-    var light = false;
+    let light = false;
     if (typeof(Storage) !== 'undefined') {
         light = (localStorage.getItem('light') == 'true');
     }
@@ -133,7 +148,7 @@ function loadTheme() {
 
 function setTheme() {
     if (typeof(Storage) !== 'undefined') {
-        var light = false;
+        let light = false;
         if ($('body').attr('class') == 'light') {
             light = true;
         }
@@ -142,7 +157,7 @@ function setTheme() {
 }
 
 function switchMode() {
-    var bc = $('body').toggleClass('light')[0].className;
+    let bc = $('body').toggleClass('light')[0].className;
     if (bc == '') {
         bc = 'dark';
     }
@@ -152,9 +167,10 @@ function switchMode() {
 }
 
 function pageLoad(page) {
-    window.sct = 1;
-    var cb_btn = '';
-    var st = '';
+    BugApp.fields = Object.keys(field_data).length
+    BugApp.sct = 1;
+    let cb_btn = '';
+    let st = '';
     switch (page) {
         case "create":
             $('div#content').on('input', 'input[id*="-field"]', updateSyntax);
@@ -172,7 +188,7 @@ function pageLoad(page) {
             st = '#edit-syntax';
             break;
     }
-    var cb = new ClipboardJS(cb_btn, {
+    let cb = new ClipboardJS(cb_btn, {
         text: function(trigger) {
             return $(st).text();
         }

@@ -6,7 +6,7 @@ body {
 }
 
 .bh {
-    color: #e22d2d;
+    color: #2ecc71;
 }
 
 .hidden {
@@ -113,7 +113,7 @@ body.light .help-text {
 }
 
 .button-group a {
-    width: 5.6rem;
+    width: 6.5rem;
 }
 
 .button-group .button {
@@ -129,13 +129,13 @@ body.light .help-text {
 }
 
 @media screen and (max-width: 39.9375em) {
-    .trello > .button {
+    .board > .button {
         border-radius: 0.1875rem;
         width: 49%;
     }
 }
 
-.trello {
+.board {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
